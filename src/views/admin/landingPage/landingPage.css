@@ -1,0 +1,46 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+    color: #333;
+}
+
+.landing-container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.landing-container h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #6200ea;
+}
+
+.landing-container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.landing-container button {
+    background: #6200ea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.landing-container button:hover {
+    background: #3700b3;
+}
