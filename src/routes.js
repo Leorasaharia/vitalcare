@@ -1,19 +1,17 @@
-import React from "react";
 
 import { Icon } from "@chakra-ui/react";
 import {
   MdBarChart,
-  MdPerson,
   MdHome,
   MdLock,
-  MdOutlineShoppingCart,
+  MdPerson
 } from "react-icons/md";
 
 // Admin Imports
 import MainDashboard from "views/admin/default";
-import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/profile";
+// import NFTMarketplace from "views/admin/marketplace";
 import DataTables from "views/admin/dataTables";
+import Profile from "views/admin/profile";
 import RTL from "views/admin/rtl";
 
 // Auth Imports
@@ -27,21 +25,21 @@ const routes = [
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: MainDashboard,
   },
-  {
-    name: "NFT Marketplace",
-    layout: "/admin",
-    path: "/nft-marketplace",
-    icon: (
-      <Icon
-        as={MdOutlineShoppingCart}
-        width='20px'
-        height='20px'
-        color='inherit'
-      />
-    ),
-    component: NFTMarketplace,
-    secondary: true,
-  },
+  // {
+  //   name: "NFT Marketplace",
+  //   layout: "/admin",
+  //   path: "/nft-marketplace",
+  //   icon: (
+  //     <Icon
+  //       as={MdOutlineShoppingCart}
+  //       width='20px'
+  //       height='20px'
+  //       color='inherit'
+  //     />
+  //   ),
+  //   component: NFTMarketplace,
+  //   secondary: true,
+  // },
   {
     name: "Data Tables",
     layout: "/admin",
