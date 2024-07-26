@@ -25,7 +25,11 @@ import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
 import { FaEthereum } from 'react-icons/fa';
 import routes from 'routes.js';
 import { ThemeEditor } from './ThemeEditor';
+
+import { useAuth0 } from "@auth0/auth0-react";
+
 export default function HeaderLinks(props) {
+	const { loginWithRedirect, isAuthenticated, logout } = useAuth0();   
 	const { secondary } = props;
 	// Chakra Color Mode
 	const navbarIcon = useColorModeValue('gray.400', 'white');
@@ -200,14 +204,12 @@ export default function HeaderLinks(props) {
 						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} borderRadius="8px" px="14px">
 							<Text fontSize="sm">Newsletter Settings</Text>
 						</MenuItem>
-						<MenuItem
-							_hover={{ bg: 'none' }}
-							_focus={{ bg: 'none' }}
-							color="red.400"
-							borderRadius="8px"
-							px="14px">
-							<Text fontSize="sm">Log out</Text>
-						</MenuItem>
+
+						<Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+							<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} color="red.400" borderRadius="8px" px="14px"> 
+								<Text fontSize="sm">Log out</Text>
+							</MenuItem>
+						</Button>
 					</Flex>
 				</MenuList>
 			</Menu>

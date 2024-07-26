@@ -1,9 +1,9 @@
 {
-  "homepage": "https://horizon-ui.com/horizon-ui-chakra",
-  "name": "horizon-ui-chakra",
+  "name": "vitalcare",
   "version": "1.0.1",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "1.8.8",
     "@chakra-ui/system": "^1.12.1",
