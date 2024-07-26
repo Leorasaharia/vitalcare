@@ -5,7 +5,7 @@ const LandingPage = () => {
     const history = useHistory();
 
     const proceedToDashboard = () => {
-        history.push('/admin'); // Adjust this route if needed
+        history.push('/auth'); // Adjust this route if needed
     };
 
     return (

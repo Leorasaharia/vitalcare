@@ -1,17 +1,18 @@
 import {
   Flex,
-  Table,
-  Progress,
   Icon,
+  Table,
   Tbody,
   Td,
   Text,
   Th,
   Thead,
   Tr,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
-import React, { useMemo } from "react";
+import Card from "components/card/Card";
+import Menu from "components/menu/MainMenu";
+import { useMemo } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -19,22 +20,66 @@ import {
   useTable,
 } from "react-table";
 
-// Custom components
-import Card from "components/card/Card";
-import Menu from "components/menu/MainMenu";
-
 // Assets
-import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
-export default function ColumnsTable(props) {
-  const { columnsData, tableData } = props;
+import { MdCancel, MdCheckCircle, MdOutlineError } from "react-icons/md";
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+export default function FeatureUsageTable(props) {
+  const columnsData = useMemo(
+    () => [
+      {
+        Header: "PATIENT",
+        accessor: "patient",
+      },
+      {
+        Header: "DIAGNOSIS",
+        accessor: "diagnosis",
+      },
+      {
+        Header: "COMMUNICATION DATE",
+        accessor: "communicationDate",
+      },
+      {
+        Header: "STATUS",
+        accessor: "status",
+      },
+    ],
+    []
+  );
+
+  const tableData = useMemo(
+    () => [
+      {
+        patient: "John Doe",
+        diagnosis: "Diabetes",
+        communicationDate: "2023-07-01",
+        status: "Active",
+      },
+      {
+        patient: "Jane Smith",
+        diagnosis: "Hypertension",
+        communicationDate: "2023-06-15",
+        status: "Inactive",
+      },
+      {
+        patient: "Mark Johnson",
+        diagnosis: "Asthma",
+        communicationDate: "2023-07-20",
+        status: "Active",
+      },
+      {
+        patient: "Emily Brown",
+        diagnosis: "Heart Disease",
+        communicationDate: "2023-05-30",
+        status: "Error",
+      },
+    ],
+    []
+  );
 
   const tableInstance = useTable(
     {
-      columns,
-      data,
+      columns: columnsData,
+      data: tableData,
     },
     useGlobalFilter,
     useSortBy,
@@ -53,6 +98,7 @@ export default function ColumnsTable(props) {
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
   return (
     <Card
       direction='column'
@@ -65,7 +111,7 @@ export default function ColumnsTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Complex Table
+          HealthBot Diagnosis Records
         </Text>
         <Menu />
       </Flex>
@@ -98,7 +144,19 @@ export default function ColumnsTable(props) {
               <Tr {...row.getRowProps()} key={index}>
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "NAME") {
+                  if (cell.column.Header === "PATIENT") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "DIAGNOSIS") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "COMMUNICATION DATE") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}
@@ -112,18 +170,18 @@ export default function ColumnsTable(props) {
                           h='24px'
                           me='5px'
                           color={
-                            cell.value === "Approved"
+                            cell.value === "Active"
                               ? "green.500"
-                              : cell.value === "Disable"
+                              : cell.value === "Inactive"
                               ? "red.500"
                               : cell.value === "Error"
                               ? "orange.500"
                               : null
                           }
                           as={
-                            cell.value === "Approved"
+                            cell.value === "Active"
                               ? MdCheckCircle
-                              : cell.value === "Disable"
+                              : cell.value === "Inactive"
                               ? MdCancel
                               : cell.value === "Error"
                               ? MdOutlineError
@@ -133,24 +191,6 @@ export default function ColumnsTable(props) {
                         <Text color={textColor} fontSize='sm' fontWeight='700'>
                           {cell.value}
                         </Text>
-                      </Flex>
-                    );
-                  } else if (cell.column.Header === "DATE") {
-                    data = (
-                      <Text color={textColor} fontSize='sm' fontWeight='700'>
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "PROGRESS") {
-                    data = (
-                      <Flex align='center'>
-                        <Progress
-                          variant='table'
-                          colorScheme='brandScheme'
-                          h='8px'
-                          w='108px'
-                          value={cell.value}
-                        />
                       </Flex>
                     );
                   }

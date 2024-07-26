@@ -8,9 +8,16 @@ const LandingPage = () => {
     return (
         <div className="landing-container">
             <div className="content">
-                <h1>Welcome to HealthBot</h1>
-                <p>Your ultimate companion for health tracking and insights. Let's get started on a journey to better health.</p>
+                <img src="/Healthbot.png" alt="HealthBot Logo" className="logo" />
+                <h1>HealthBot</h1>
+                <p>
+                    HealthBot's US clinical services and appointments are no longer available. For details about your
+                    health plan benefits and to find a new provider, contact your health plan.
+                </p>
                 <button onClick={proceedToDashboard}>Proceed to Dashboard</button>
+                <p>
+                    If you are looking for UK HealthBot Clinical Services <a href="/uk-services">click here</a>
+                </p>
             </div>
         </div>
     );

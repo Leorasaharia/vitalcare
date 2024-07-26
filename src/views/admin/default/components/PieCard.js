@@ -1,11 +1,10 @@
 // Chakra imports
-import { Box, Flex, Text, Select, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Select, Text, useColorModeValue } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card.js";
 import PieChart from "components/charts/PieChart";
-import { pieChartData, pieChartOptions } from "variables/charts";
 import { VSeparator } from "components/separator/Separator";
-import React from "react";
+import { pieChartData, pieChartOptions } from "variables/charts";
 
 export default function Conversion(props) {
   const { ...rest } = props;
@@ -26,7 +25,7 @@ export default function Conversion(props) {
         w='100%'
         mb='8px'>
         <Text color={textColor} fontSize='md' fontWeight='600' mt='4px'>
-          Your Pie Chart
+          User Health Status
         </Text>
         <Select
           fontSize='sm'
@@ -63,7 +62,7 @@ export default function Conversion(props) {
               color='secondaryGray.600'
               fontWeight='700'
               mb='5px'>
-              Your files
+             Daily Health Checkups
             </Text>
           </Flex>
           <Text fontSize='lg' color={textColor} fontWeight='700'>
@@ -79,7 +78,7 @@ export default function Conversion(props) {
               color='secondaryGray.600'
               fontWeight='700'
               mb='5px'>
-              System
+              Previous Records
             </Text>
           </Flex>
           <Text fontSize='lg' color={textColor} fontWeight='700'>

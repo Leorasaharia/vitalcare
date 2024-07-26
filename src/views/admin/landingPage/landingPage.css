@@ -1,46 +1,52 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    height: 100%;
-    width: 100%;
+.landing-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
-    color: #333;
+    height: 100vh;
+    background-color: #fff;
 }
 
-.landing-container {
+.content {
     text-align: center;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
 }
 
-.landing-container h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-    color: #6200ea;
-}
-
-.landing-container p {
-    font-size: 1.2em;
+.logo {
+    width: 100px;
+    height: auto;
     margin-bottom: 20px;
 }
 
-.landing-container button {
-    background: #6200ea;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.landing-container button:hover {
-    background: #3700b3;
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3182CE;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2C5282;
+}
+
+a {
+    color: #3182CE;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

@@ -1,26 +1,3 @@
-/* eslint-disable */
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
-
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2023 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 // Chakra imports
@@ -43,10 +20,11 @@ import {
 import { HSeparator } from "components/separator/Separator";
 import DefaultAuth from "layouts/auth/Default";
 // Assets
-import illustration from "assets/img/auth/auth.png";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
+
+const illustration = "/HealthBot.png"; // Path relative to public folder
 
 function SignIn() {
   // Chakra color mode
@@ -67,6 +45,7 @@ function SignIn() {
   );
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+  
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
@@ -83,7 +62,7 @@ function SignIn() {
         flexDirection='column'>
         <Box me='auto'>
           <Heading color={textColor} fontSize='36px' mb='10px'>
-            Sign In
+            Sign In to HealthBot
           </Heading>
           <Text
             mb='36px'
@@ -91,7 +70,7 @@ function SignIn() {
             color={textColorSecondary}
             fontWeight='400'
             fontSize='md'>
-            Enter your email and password to sign in!
+            Access your HealthBot account using your email and password.
           </Text>
         </Box>
         <Flex
@@ -143,7 +122,7 @@ function SignIn() {
               fontSize='sm'
               ms={{ base: "0px", md: "0px" }}
               type='email'
-              placeholder='mail@simmmple.com'
+              placeholder='example@healthbot.com'
               mb='24px'
               fontWeight='500'
               size='lg'
