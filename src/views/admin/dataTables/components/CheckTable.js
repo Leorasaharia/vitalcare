@@ -1,7 +1,7 @@
 import {
+  Checkbox,
   Flex,
   Table,
-  Checkbox,
   Tbody,
   Td,
   Text,
@@ -10,7 +10,7 @@ import {
   Tr,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -21,11 +21,84 @@ import {
 // Custom components
 import Card from "components/card/Card";
 import Menu from "components/menu/MainMenu";
-export default function CheckTable(props) {
-  const { columnsData, tableData } = props;
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+export default function CheckTable() {
+  // Define columns
+  const columns = useMemo(
+    () => [
+      {
+        Header: "NAME",
+        accessor: "name",
+      },
+      {
+        Header: "TYPE",
+        accessor: "type",
+      },
+      {
+        Header: "DATE",
+        accessor: "date",
+      },
+      {
+        Header: "RESULT",
+        accessor: "result",
+      },
+      {
+        Header: "NOTES",
+        accessor: "notes",
+      },
+    ],
+    []
+  );
+
+  // Define demo data
+  const data = useMemo(
+    () => [
+      {
+        name: "John Doe",
+        type: "X-ray",
+        date: "2024-01-15",
+        result: "Normal",
+        notes: "No issues found",
+      },
+      {
+        name: "Jane Smith",
+        type: "CT Scan",
+        date: "2023-12-10",
+        result: "Abnormal",
+        notes: "Follow-up required",
+      },
+      {
+        name: "Emily Davis",
+        type: "MRI",
+        date: "2023-11-05",
+        result: "Normal",
+        notes: "No issues found",
+      },
+      {
+        name: "Michael Brown",
+        type: "ECG",
+        date: "2023-10-22",
+        result: "Normal",
+        notes: "Routine check",
+      },
+      {
+        name: "Sarah Johnson",
+        type: "EEG",
+        date: "2023-09-15",
+        result: "Abnormal",
+        notes: "Further evaluation needed",
+      },
+      {
+        name: "David Wilson",
+        type: "Eye Test",
+        date: "2023-08-30",
+        result: "Normal",
+        notes: "Vision is fine",
+      },
+      // Add more demo data as needed
+    ],
+    []
+  );
 
   const tableInstance = useTable(
     {
@@ -45,10 +118,12 @@ export default function CheckTable(props) {
     prepareRow,
     initialState,
   } = tableInstance;
+
   initialState.pageSize = 11;
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
   return (
     <Card
       direction='column'
@@ -61,7 +136,7 @@ export default function CheckTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Check Table
+          Health Records
         </Text>
         <Menu />
       </Flex>
@@ -98,34 +173,26 @@ export default function CheckTable(props) {
                     data = (
                       <Flex align='center'>
                         <Checkbox
-                          defaultChecked={cell.value[1]}
+                          defaultChecked={false}
                           colorScheme='brandScheme'
                           me='10px'
                         />
                         <Text color={textColor} fontSize='sm' fontWeight='700'>
-                          {cell.value[0]}
+                          {cell.value}
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "PROGRESS") {
+                  } else if (cell.column.Header === "RESULT") {
                     data = (
-                      <Flex align='center'>
-                        <Text
-                          me='10px'
-                          color={textColor}
-                          fontSize='sm'
-                          fontWeight='700'>
-                          {cell.value}%
-                        </Text>
-                      </Flex>
-                    );
-                  } else if (cell.column.Header === "QUANTITY") {
-                    data = (
-                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                      <Text
+                        me='10px'
+                        color={textColor}
+                        fontSize='sm'
+                        fontWeight='700'>
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "DATE") {
+                  } else {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}

@@ -13,9 +13,8 @@ import {
 } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card";
-import { AndroidLogo, AppleLogo, WindowsLogo } from "components/icons/Icons";
 import Menu from "components/menu/MainMenu";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -23,16 +22,79 @@ import {
   useTable,
 } from "react-table";
 
-export default function DevelopmentTable(props) {
-  const { columnsData, tableData } = props;
+export default function MentalHealthConsultationsTable() {
+  // Define columns and data
+  const columnsData = useMemo(
+    () => [
+      {
+        Header: "PATIENT NAME",
+        accessor: "name",
+      },
+      {
+        Header: "CONSULTATION TYPE",
+        accessor: "type",
+      },
+      {
+        Header: "DATE",
+        accessor: "date",
+      },
+      {
+        Header: "PROGRESS",
+        accessor: "progress",
+      },
+      {
+        Header: "NOTES",
+        accessor: "notes",
+      },
+    ],
+    []
+  );
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+  const tableData = useMemo(
+    () => [
+      {
+        name: "Alice Johnson",
+        type: "Therapy",
+        date: "2024-01-10",
+        progress: 75,
+        notes: "Improving with regular sessions.",
+      },
+      {
+        name: "Bob Smith",
+        type: "Counseling",
+        date: "2023-12-15",
+        progress: 60,
+        notes: "Needs additional support.",
+      },
+      {
+        name: "Charlie Brown",
+        type: "Psychiatric Evaluation",
+        date: "2023-11-20",
+        progress: 85,
+        notes: "Significant progress observed.",
+      },
+      {
+        name: "Diana Prince",
+        type: "Group Therapy",
+        date: "2023-10-05",
+        progress: 50,
+        notes: "Moderate improvement.",
+      },
+      {
+        name: "Ethan Hunt",
+        type: "Individual Counseling",
+        date: "2023-09-12",
+        progress: 70,
+        notes: "Stable condition.",
+      },
+    ],
+    []
+  );
 
   const tableInstance = useTable(
     {
-      columns,
-      data,
+      columns: columnsData,
+      data: tableData,
     },
     useGlobalFilter,
     useSortBy,
@@ -47,11 +109,13 @@ export default function DevelopmentTable(props) {
     prepareRow,
     initialState,
   } = tableInstance;
-  initialState.pageSize = 11;
+
+  initialState.pageSize = 5;
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const iconColor = useColorModeValue("secondaryGray.500", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
   return (
     <Card
       direction='column'
@@ -64,7 +128,7 @@ export default function DevelopmentTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Development Table
+          Mental Health Consultations
         </Text>
         <Menu />
       </Flex>
@@ -97,48 +161,17 @@ export default function DevelopmentTable(props) {
               <Tr {...row.getRowProps()} key={index}>
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "NAME") {
+                  if (cell.column.Header === "PATIENT NAME") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "TECH") {
+                  } else if (cell.column.Header === "CONSULTATION TYPE") {
                     data = (
-                      <Flex align='center'>
-                        {cell.value.map((item, key) => {
-                          if (item === "apple") {
-                            return (
-                              <AppleLogo
-                                key={key}
-                                color={iconColor}
-                                me='16px'
-                                h='18px'
-                                w='15px'
-                              />
-                            );
-                          } else if (item === "android") {
-                            return (
-                              <AndroidLogo
-                                key={key}
-                                color={iconColor}
-                                me='16px'
-                                h='18px'
-                                w='16px'
-                              />
-                            );
-                          } else if (item === "windows") {
-                            return (
-                              <WindowsLogo
-                                key={key}
-                                color={iconColor}
-                                h='18px'
-                                w='19px'
-                              />
-                            );
-                          }
-                        })}
-                      </Flex>
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
                     );
                   } else if (cell.column.Header === "DATE") {
                     data = (
@@ -164,6 +197,12 @@ export default function DevelopmentTable(props) {
                           value={cell.value}
                         />
                       </Flex>
+                    );
+                  } else if (cell.column.Header === "NOTES") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
                     );
                   }
                   return (

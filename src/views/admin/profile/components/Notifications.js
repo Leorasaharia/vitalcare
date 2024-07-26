@@ -18,7 +18,7 @@ export default function Notifications(props) {
           fontSize="2xl"
           mb="4px"
         >
-          Notifications
+          Health News Notifications
         </Text>
         <Menu />
       </Flex>
@@ -28,14 +28,14 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="1"
-        label="Item update notifications"
+        label="Daily Health Tips"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="2"
-        label="Item comment notifications"
+        label="New Research Updates"
       />
       <SwitchField
         isChecked={true}
@@ -43,7 +43,7 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="3"
-        label="Buyer review notifications"
+        label="Vaccination Reminders"
       />
       <SwitchField
         isChecked={true}
@@ -51,21 +51,21 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="4"
-        label="Rating reminders notifications"
+        label="Mental Health Resources"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="5"
-        label="Meetups near you notifications"
+        label="Diet and Nutrition Advice"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="6"
-        label="Company news notifications"
+        label="Exercise and Fitness Tips"
       />
       <SwitchField
         isChecked={true}
@@ -73,14 +73,14 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="7"
-        label="New launches and projects"
+        label="Health Policy News"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="8"
-        label="Monthly product changes"
+        label="Local Health Alerts"
       />
       <SwitchField
         isChecked={true}
@@ -88,13 +88,13 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="9"
-        label="Subscribe to newsletter"
+        label="Global Health News"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         id="10"
-        label="Email me when someone follows me"
+        label="Personalized Health Updates"
       />
     </Card>
   );
