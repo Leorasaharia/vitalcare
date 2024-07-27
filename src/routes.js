@@ -1,5 +1,5 @@
 import { Icon } from "@chakra-ui/react";
-import { MdBarChart, MdHome, MdLock, MdPerson } from "react-icons/md";
+import { MdBarChart, MdHome, MdPerson } from "react-icons/md";
 
 // Admin Imports
 import MainDashboard from "views/admin/default";
@@ -8,8 +8,8 @@ import DataTables from "views/admin/dataTables";
 import Profile from "views/admin/profile";
 // import RTL from "views/admin/rtl";
 
-// Auth Imports
-import SignInCentered from "views/auth/signIn";
+// // Auth Imports
+// import SignInCentered from "views/auth/signIn";
 
 const routes = [
 	{
@@ -48,19 +48,20 @@ const routes = [
 		icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
 		component: Profile,
 	},
-	{
-		name: "Sign In",
-		layout: "/auth",
-		path: "/sign-in",
-		icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
-		component: SignInCentered,
-	},
+	// {
+	// 	name: "Sign In",
+	// 	layout: "/auth",
+	// 	path: "/sign-in",
+	// 	icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+	// 	component: SignInCentered,
+	// },
+
 	{
 		name: "HealthBot",
 		layout: "/admin",
-		path: "/healthbot",
-		icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
-		component: SignInCentered,
+		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+		path: "/data-tables",
+		component: DataTables,
 	},
 	// {
 	//   name: "RTL Admin",
