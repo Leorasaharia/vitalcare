@@ -1,7 +1,6 @@
 // Chakra imports
 import {
   Box,
-  Button,
   Flex,
   Grid,
   HStack,
@@ -10,22 +9,20 @@ import {
   Menu,
   MenuItem,
   MenuList,
-  MenuButton,
+  SimpleGrid,
   Stack,
   Text,
-  useColorModeValue,
   useColorMode,
-  useDisclosure,
-  SimpleGrid,
+  useColorModeValue,
+  useDisclosure
 } from "@chakra-ui/react";
 import IconBox from "components/icons/IconBox";
 import { SidebarResponsive } from "components/sidebar/Sidebar";
+import { SidebarContext } from "contexts/SidebarContext";
 import PropTypes from "prop-types";
-import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { GoChevronDown, GoChevronRight } from "react-icons/go";
 import { NavLink } from "react-router-dom";
-import { SidebarContext } from "contexts/SidebarContext";
 import routes from "routes.js";
 
 export default function AuthNavbar(props) {
@@ -560,20 +557,7 @@ export default function AuthNavbar(props) {
             />
           </Box>
           {linksAuth}
-          <Link href='https://www.horizon-ui.com/pro'>
-            <Button
-              bg={bgButton}
-              color={colorButton}
-              fontSize='xs'
-              variant='no-effects'
-              px='30px'
-              display={{
-                sm: "none",
-                lg: "flex",
-              }}>
-              Buy Now
-            </Button>
-          </Link>
+         
         </Flex>
       </Flex>
     </SidebarContext.Provider>

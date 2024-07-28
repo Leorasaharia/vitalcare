@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 // Chakra imports
@@ -13,12 +12,12 @@ import {
   Link,
   Menu,
   MenuList,
+  SimpleGrid,
   Stack,
   Text,
-  useColorModeValue,
   useColorMode,
+  useColorModeValue,
   useDisclosure,
-  SimpleGrid,
 } from "@chakra-ui/react";
 
 // Custom components
