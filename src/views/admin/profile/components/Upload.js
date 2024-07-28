@@ -33,11 +33,11 @@ export default function Upload(props) {
               <Icon as={MdUpload} w='80px' h='80px' color={brandColor} />
               <Flex justify='center' mx='auto' mb='12px'>
                 <Text fontSize='xl' fontWeight='700' color={brandColor}>
-                  Upload Files
+                  Upload Your Reports
                 </Text>
               </Flex>
               <Text fontSize='sm' fontWeight='500' color='secondaryGray.500'>
-                PNG, JPG and GIF files are allowed
+                PDF, PNG and JPG files are allowed
               </Text>
             </Box>
           }
@@ -49,7 +49,7 @@ export default function Upload(props) {
             textAlign='start'
             fontSize='2xl'
             mt={{ base: "20px", "2xl": "50px" }}>
-            Complete your profile
+            Update Your Records
           </Text>
           <Text
             color={textColorSecondary}
@@ -57,8 +57,7 @@ export default function Upload(props) {
             my={{ base: "auto", "2xl": "10px" }}
             mx='auto'
             textAlign='start'>
-            Stay on the pulse of distributed projects with an anline whiteboard
-            to plan, coordinate and discuss
+            Please upload a copy of your recent medical prescription. This will help us better understand your needs and provide tailored recommendations for your health.
           </Text>
           <Flex w='100%'>
             <Button
@@ -69,7 +68,7 @@ export default function Upload(props) {
               mt={{ base: "20px", "2xl": "auto" }}
               variant='brand'
               fontWeight='500'>
-              Publish now
+              Upload Now
             </Button>
           </Flex>
         </Flex>
