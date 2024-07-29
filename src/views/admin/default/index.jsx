@@ -1,14 +1,10 @@
 
 // Chakra imports
 import {
-  Avatar,
   Box,
-  Flex,
-  FormLabel,
   Icon,
-  Select,
   SimpleGrid,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
 // Custom components
 import MiniCalendar from "components/calendar/MiniCalendar";
@@ -16,9 +12,7 @@ import MiniStatistics from "components/card/MiniStatistics";
 import IconBox from "components/icons/IconBox";
 import {
   MdAddTask,
-  MdAttachMoney,
-  MdBarChart,
-  MdFileCopy,
+  MdAttachMoney
 } from "react-icons/md";
 import CheckTable from "views/admin/default/components/CheckTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
@@ -42,28 +36,8 @@ export default function UserReports() {
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, "2xl": 6 }}
-        gap="20px"
-        mb="20px"
-      >
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w="56px"
-              h="56px"
-              bg={boxBg}
-              icon={
-                <Icon
-                  w="32px"
-                  h="32px"
-                  as={MdBarChart}
-                  color={brandColor}
-                />
-              }
-            />
-          }
-          name="Patients Admitted"
-          value="150"
-        />
+        gap='20px'
+        mb='20px'>
         <MiniStatistics
           startContent={
             <IconBox
@@ -82,48 +56,23 @@ export default function UserReports() {
           }
           name="Appointments Today"
           value="30"
+          // startContent={
+          //   <IconBox
+          //     w='56px'
+          //     h='56px'
+          //     bg={boxBg}
+          //     icon={
+          //       <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />
+          //     }
+          //   />
+          // }
+          name='Last Recorded BP'
+          value='125/80 mmHg'
         />
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w="56px"
-              h="56px"
-              bg={boxBg}
-              icon={
-                <Icon
-                  w="32px"
-                  h="32px"
-                  as={MdAddTask}
-                  color={brandColor}
-                />
-              }
-            />
-          }
-          name="New Patients"
-          value="25"
-        />
-        <MiniStatistics
-          endContent={
-            <Flex me="-16px" mt="10px">
-              <FormLabel htmlFor="department">
-                <Avatar src={Usa} />
-              </FormLabel>
-              <Select
-                id="department"
-                variant="mini"
-                mt="5px"
-                me="0px"
-                defaultValue="general"
-              >
-                <option value="general">General</option>
-                <option value="pediatrics">Pediatrics</option>
-                <option value="orthopedics">Orthopedics</option>
-              </Select>
-            </Flex>
-          }
-          name="Department"
-          value="General"
-        />
+        <MiniStatistics name='Blood Sugar Quantity' value='120 mg/dL' />
+        <MiniStatistics name='Blood Oxygen Percentage' value='98%' />
+        <MiniStatistics name='Last Appointment' value='24th July, 2024' />
+        <MiniStatistics name='Upcoming Appointment' value='30th July, 2024' />
         <MiniStatistics
           startContent={
             <IconBox
@@ -135,25 +84,6 @@ export default function UserReports() {
           }
           name="New Lab Results"
           value="12"
-        />
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w="56px"
-              h="56px"
-              bg={boxBg}
-              icon={
-                <Icon
-                  w="32px"
-                  h="32px"
-                  as={MdFileCopy}
-                  color={brandColor}
-                />
-              }
-            />
-          }
-          name="Total Patients"
-          value="2935"
         />
       </SimpleGrid>
 
