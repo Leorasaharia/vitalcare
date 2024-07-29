@@ -47,55 +47,23 @@ export default function UserReports() {
         gap='20px'
         mb='20px'>
         <MiniStatistics
-          startContent={
-            <IconBox
-              w='56px'
-              h='56px'
-              bg={boxBg}
-              icon={
-                <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />
-              }
-            />
-          }
-          name='Earnings'
-          value='$350.4'
+          // startContent={
+          //   <IconBox
+          //     w='56px'
+          //     h='56px'
+          //     bg={boxBg}
+          //     icon={
+          //       <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />
+          //     }
+          //   />
+          // }
+          name='Last Recorded BP'
+          value='125/80 mmHg'
         />
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w='56px'
-              h='56px'
-              bg={boxBg}
-              icon={
-                <Icon w='32px' h='32px' as={MdAttachMoney} color={brandColor} />
-              }
-            />
-          }
-          name='Spend this month'
-          value='$642.39'
-        />
-        <MiniStatistics growth='+23%' name='Sales' value='$574.34' />
-        <MiniStatistics
-          endContent={
-            <Flex me='-16px' mt='10px'>
-              <FormLabel htmlFor='balance'>
-                <Avatar src={Usa} />
-              </FormLabel>
-              <Select
-                id='balance'
-                variant='mini'
-                mt='5px'
-                me='0px'
-                defaultValue='usd'>
-                <option value='usd'>USD</option>
-                <option value='eur'>EUR</option>
-                <option value='gba'>GBA</option>
-              </Select>
-            </Flex>
-          }
-          name='Your balance'
-          value='$1,000'
-        />
+        <MiniStatistics name='Blood Sugar Quantity' value='120 mg/dL' />
+        <MiniStatistics name='Blood Oxygen Percentage' value='98%' />
+        <MiniStatistics name='Last Appointment' value='24th July, 2024' />
+        <MiniStatistics name='Upcoming Appointment' value='30th July, 2024' />
         <MiniStatistics
           startContent={
             <IconBox
@@ -107,20 +75,6 @@ export default function UserReports() {
           }
           name='New Tasks'
           value='154'
-        />
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w='56px'
-              h='56px'
-              bg={boxBg}
-              icon={
-                <Icon w='32px' h='32px' as={MdFileCopy} color={brandColor} />
-              }
-            />
-          }
-          name='Total Projects'
-          value='2935'
         />
       </SimpleGrid>
 
