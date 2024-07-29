@@ -40,7 +40,7 @@ export default function WeeklyRevenue(props) {
           fontSize='xl'
           fontWeight='700'
           lineHeight='100%'>
-         Weekly Status
+         Sleep Record
         </Text>
         <Button
           align='center'

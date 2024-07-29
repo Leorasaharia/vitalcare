@@ -29,7 +29,7 @@ import { ThemeEditor } from './ThemeEditor';
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function HeaderLinks(props) {
-	const { loginWithRedirect, isAuthenticated, logout } = useAuth0();   
+	const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();   
 	const { secondary } = props;
 	// Chakra Color Mode
 	const navbarIcon = useColorModeValue('gray.400', 'white');
@@ -194,7 +194,7 @@ export default function HeaderLinks(props) {
 							fontSize="sm"
 							fontWeight="700"
 							color={textColor}>
-							👋&nbsp; Hey, Adela
+							👋&nbsp; Hey, {user?.given_name}
 						</Text>
 					</Flex>
 					<Flex flexDirection="column" p="10px">
