@@ -11,7 +11,7 @@ export function SidebarBrand() {
 
   return (
     <Flex align='center' direction='column'>
-      <Image src="/healthbot.png" alt="Healthbot Logo" h="90px" w="90px" my="32px" />
+      <Image src="/VitalCare.png" alt="Logo" h="90px" w="90px" my="32px" />
       <HSeparator mb='20px' />
     </Flex>
   );

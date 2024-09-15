@@ -35,7 +35,7 @@ export default function Footer() {
         {" "}
         &copy; {1900 + new Date().getYear()}
         <Text as='span' fontWeight='500' ms='4px'>
-          HealthBot. All Rights Reserved.
+          VCure. All Rights Reserved.
           <Link
             mx='3px'
             color={textColor}

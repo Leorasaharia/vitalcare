@@ -4,7 +4,6 @@ import { Box, Flex, Stack } from "@chakra-ui/react";
 import Brand from "components/sidebar/components/Brand";
 import Links from "components/sidebar/components/Links";
 import SidebarCard from "components/sidebar/components/SidebarCard";
-import React from "react";
 
 // FUNCTIONS
 

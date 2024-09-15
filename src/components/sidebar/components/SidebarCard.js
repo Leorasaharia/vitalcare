@@ -1,15 +1,14 @@
 import {
-  Button,
-  Flex,
-  Image,
-  Link,
-  Text,
-  useColorModeValue,
+    Button,
+    Flex,
+    Link,
+    Text,
+    useColorModeValue
 } from "@chakra-ui/react";
 
 export default function SidebarDocs() {
-  const bgColor = "linear-gradient(135deg, #4A90E2 0%, #003B8F 100%)";
-  const borderColor = useColorModeValue("white", "navy.300");
+  const bgColor = "linear-gradient(135deg, #e0b3ff 0%, #d1a3ff 100%)"; // Pastel purple gradient
+  const borderColor = useColorModeValue("white", "purple.300");
 
   return (
     <Flex
@@ -17,62 +16,64 @@ export default function SidebarDocs() {
       direction='column'
       align='center'
       bg={bgColor}
-      borderRadius='30px'
-      position='relative'>
+      borderRadius='20px' // Smaller border radius
+      position='relative'
+      width='240px' // Smaller width
+      padding='20px' // Added padding to control inner spacing
+      >
       <Flex
-        border='5px solid'
+        border='4px solid'
         borderColor={borderColor}
         bg={bgColor}
         borderRadius='50%'
-        w='94px'
-        h='94px'
+        w='70px' // Smaller width
+        h='70px' // Smaller height
         align='center'
         justify='center'
         mx='auto'
         position='absolute'
         left='50%'
-        top='-47px'
+        top='-35px' // Adjusted position for smaller size
         transform='translate(-50%, 0%)'>
-        <Image src="/public/HealthBot.png" w='40px' h='40px' />
       </Flex>
       <Flex
         direction='column'
-        mb='12px'
+        mb='8px' // Reduced margin-bottom
         align='center'
         justify='center'
-        px='15px'
-        pt='55px'>
+        px='10px'
+        pt='45px'> {/* Reduced padding-top */}
         <Text
-          fontSize={{ base: "lg", xl: "18px" }}
+          fontSize='md' // Reduced font size
           color='white'
           fontWeight='bold'
-          lineHeight='150%'
+          lineHeight='140%'
           textAlign='center'
-          px='10px'
-          mt="10px"
-          mb='6px'>
-          Upgrade Your HealthBot Plan
+          px='8px'
+          mt='8px'
+          mb='4px'>
+          Upgrade Your Plan
         </Text>
         <Text
-          fontSize='14px'
+          fontSize='12px' // Smaller font size
           color={"white"}
           fontWeight='500'
-          px='10px'
-          mb='6px'
+          px='8px'
+          mb='4px'
           textAlign='center'>
-          Enhance your experience with HealthBot and unlock premium features!
+          Enhance your experience with VitalCare!
         </Text>
       </Flex>
-      <Link href='https://healthbot.com/upgrade?ref=sidebar-docs'>
+      <Link href='https://Vitalcare.com/upgrade?ref=sidebar-docs'>
         <Button
-          bg='whiteAlpha.300'
-          _hover={{ bg: "whiteAlpha.200" }}
-          _active={{ bg: "whiteAlpha.100" }}
-          mb={{ sm: "16px", xl: "24px" }}
+          bg='whiteAlpha.400' // Softer white on pastel purple
+          _hover={{ bg: "whiteAlpha.300" }}
+          _active={{ bg: "whiteAlpha.200" }}
+          mb='12px' // Smaller margin-bottom
           color={"white"}
           fontWeight='regular'
-          fontSize='sm'
-          minW='185px'
+          fontSize='xs' // Smaller font size
+          minW='160px' // Reduced button width
           mx='auto'>
           Upgrade Now
         </Button>

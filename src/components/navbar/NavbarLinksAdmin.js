@@ -160,7 +160,7 @@ export default function HeaderLinks(props) {
                 variant='no-hover'
                 color={textColor}
                 bg='transparent'>
-                Try Horizon Free
+                Try VCure Free
               </Button>
             </Link>
           </Flex>
