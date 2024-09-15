@@ -99,10 +99,10 @@ export default function HeaderLinks(props) {
 					</Flex>
 					<Flex flexDirection="column">
 						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} px="0" borderRadius="8px" mb="10px">
-							<ItemContent info="Horizon UI Dashboard PRO" aName="Alicia" />
+							<ItemContent info="vitalcare" aName="Alicia" />
 						</MenuItem>
 						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} px="0" borderRadius="8px" mb="10px">
-							<ItemContent info="Horizon Design System Free" aName="Josh Henry" />
+							<ItemContent info="vitalcare" aName="Josh Henry" />
 						</MenuItem>
 					</Flex>
 				</MenuList>
@@ -133,14 +133,14 @@ export default function HeaderLinks(props) {
           <Flex flexDirection='column'>
             <Link
               w='100%'
-              href='https://horizon-ui.com/pro?ref=horizon-chakra-free'>
+              href='https://vitalcare.com/'>
               <Button w='100%' h='44px' mb='10px' variant='brand'>
-                Buy Horizon UI PRO
+                Interested in Personalized Health Records' Track?
               </Button>
             </Link>
             <Link
               w='100%'
-              href='https://horizon-ui.com/documentation/docs/introduction?ref=horizon-chakra-free'>
+              href='https://vitalcare.com/documentation/docs/vitalcare'>
               <Button
                 w='100%'
                 h='44px'
@@ -153,7 +153,7 @@ export default function HeaderLinks(props) {
             </Link>
             <Link
               w='100%'
-              href='https://github.com/horizon-ui/horizon-ui-chakra'>
+              href='https://github.com/vitalcare'>
               <Button
                 w='100%'
                 h='44px'
