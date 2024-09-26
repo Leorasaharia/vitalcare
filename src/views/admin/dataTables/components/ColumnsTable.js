@@ -9,7 +9,7 @@ import {
   Tr,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -20,16 +20,67 @@ import {
 // Custom components
 import Card from "components/card/Card";
 import Menu from "components/menu/MainMenu";
-export default function ColumnsTable(props) {
-  const { columnsData, tableData } = props;
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+export default function RadiologyTable() {
+  // Define columns
+  const columnsData = useMemo(
+    () => [
+      {
+        Header: 'Patient Name',
+        accessor: 'patientName',
+      },
+      {
+        Header: 'Study Type',
+        accessor: 'studyType',
+      },
+      {
+        Header: 'Exam Date',
+        accessor: 'examDate',
+      },
+      {
+        Header: 'Result',
+        accessor: 'result',
+      },
+    ],
+    []
+  );
 
+  // Define data
+  const tableData = useMemo(
+    () => [
+      {
+        patientName: 'John Doe',
+        studyType: 'CT Scan',
+        examDate: '2024-09-10',
+        result: 'Normal',
+      },
+      {
+        patientName: 'Jane Smith',
+        studyType: 'MRI',
+        examDate: '2024-09-12',
+        result: 'Abnormal',
+      },
+      {
+        patientName: 'Emily Johnson',
+        studyType: 'X-Ray',
+        examDate: '2024-09-15',
+        result: 'Normal',
+      },
+      {
+        patientName: 'Michael Brown',
+        studyType: 'Ultrasound',
+        examDate: '2024-09-17',
+        result: 'Pending Review',
+      },
+    ],
+    []
+  );
+
+  // Setup table instance
   const tableInstance = useTable(
     {
-      columns,
-      data,
+      columns: columnsData,
+      data: tableData,
     },
     useGlobalFilter,
     useSortBy,
@@ -48,6 +99,7 @@ export default function ColumnsTable(props) {
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
   return (
     <Card
       direction='column'
@@ -60,7 +112,7 @@ export default function ColumnsTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          4-Column Table
+          Radiology Report Table
         </Text>
         <Menu />
       </Flex>
@@ -93,7 +145,7 @@ export default function ColumnsTable(props) {
               <Tr {...row.getRowProps()} key={index}>
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "NAME") {
+                  if (cell.column.Header === "Patient Name") {
                     data = (
                       <Flex align='center'>
                         <Text color={textColor} fontSize='sm' fontWeight='700'>
@@ -101,7 +153,7 @@ export default function ColumnsTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "PROGRESS") {
+                  } else if (cell.column.Header === "Study Type") {
                     data = (
                       <Flex align='center'>
                         <Text
@@ -109,17 +161,17 @@ export default function ColumnsTable(props) {
                           color={textColor}
                           fontSize='sm'
                           fontWeight='700'>
-                          {cell.value}%
+                          {cell.value}
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "QUANTITY") {
+                  } else if (cell.column.Header === "Exam Date") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "DATE") {
+                  } else if (cell.column.Header === "Result") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}

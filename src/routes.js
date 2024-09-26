@@ -35,7 +35,7 @@ const routes = [
 	//   secondary: true,
 	// },
 	{
-		name: "Data Tables",
+		name: "Vital Records",
 		layout: "/admin",
 		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
 		path: "/data-tables",
@@ -56,13 +56,13 @@ const routes = [
 	// 	component: SignInCentered,
 	// },
 
-	{
-		name: "Vital Records",
-		layout: "/admin",
-		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
-		path: "/data-tables",
-		component: DataTables,
-	},
+	// {
+	// 	name: "Vital Records",
+	// 	layout: "/admin",
+	// 	icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+	// 	path: "/data-tables",
+	// 	component: DataTables,
+	// },
 	// {
 	//   name: "RTL Admin",
 	//   layout: "/rtl",

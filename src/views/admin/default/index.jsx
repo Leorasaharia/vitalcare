@@ -72,7 +72,7 @@ export default function UserReports() {
         <MiniStatistics name='Blood Sugar Quantity' value='120 mg/dL' />
         <MiniStatistics name='Blood Oxygen Percentage' value='98%' />
         <MiniStatistics name='Last Appointment' value='24th July, 2024' />
-        <MiniStatistics name='Upcoming Appointment' value='30th July, 2024' />
+        <MiniStatistics name='Upcoming Appointment' value='30th September, 2024' />
         <MiniStatistics
           startContent={
             <IconBox

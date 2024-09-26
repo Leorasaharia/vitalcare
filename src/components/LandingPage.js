@@ -28,7 +28,7 @@ const LandingPage = () => {
                 width="100%"
                 maxW="md"
             >
-                <Heading fontSize="4xl" color={buttonBg}>Welcome to VCure</Heading>
+                <Heading fontSize="4xl" color={buttonBg}>Welcome to VitalCare</Heading>
                 <Text fontSize="lg" marginBottom="10px">
                     Your ultimate companion for health tracking and insights. Let's get started on a journey to better health.
                 </Text>

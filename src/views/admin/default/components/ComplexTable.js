@@ -111,7 +111,7 @@ export default function FeatureUsageTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          HealthBot Diagnosis Records
+          Self Diagnosis Records
         </Text>
         <Menu />
       </Flex>

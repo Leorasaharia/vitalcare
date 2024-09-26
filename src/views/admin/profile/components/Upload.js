@@ -1,56 +1,38 @@
-// Chakra imports
 import {
   Box,
-  Button,
   Flex,
   Icon,
   Text,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
-// Custom components
 import Card from "components/card/Card.js";
 import { useState } from "react";
-// Assets
 import { MdUpload } from "react-icons/md";
 import Dropzone from "views/admin/profile/components/Dropzone";
 
 export default function Upload(props) {
   const { used, total, ...rest } = props;
-  const [reportGenerated, setReportGenerated] = useState(false);
-  const [generatedReport, setGeneratedReport] = useState("");
+  const [file, setFile] = useState(null);
+  const [uploadMessage, setUploadMessage] = useState("");
 
-  // Function to generate the fake scan and report
-  const generateFakeReport = () => {
-    const reportData = `
-      Name: Jane Doe
-      Age: 19
-      Gender: Female
-      Weight: 48 kg
-      Height: 161 cm
-      Blood Pressure: 110/70 mmHg
-      Heart Rate: 72 bpm
-      Body Temperature: 36.8°C
-      Blood Sugar: 90 mg/dL
-      Oxygen Saturation: 98%
-      Cholesterol: 180 mg/dL
-      Hemoglobin: 13.5 g/dL
-      BMI: 18.5 (Normal)
-      Medical History: No significant medical history.
-      Last Check-up: 2024-09-01
-    `;
+  const handleFileUpload = (acceptedFiles) => {
+    const formData = new FormData();
+    formData.append("file", acceptedFiles[0]);
 
-    setGeneratedReport(reportData);
-    setReportGenerated(true);
-  };
-
-  // Function to trigger file download
-  const downloadReport = () => {
-    const element = document.createElement("a");
-    const file = new Blob([generatedReport], { type: "text/plain" });
-    element.href = URL.createObjectURL(file);
-    element.download = "medical_report.txt";
-    document.body.appendChild(element);
-    element.click();
+    // Send the file to the backend
+    fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUploadMessage("File uploaded successfully!");
+        setFile(acceptedFiles[0]);
+      })
+      .catch((error) => {
+        setUploadMessage("File upload failed.");
+        console.error("Error:", error);
+      });
   };
 
   // Chakra Color Mode
@@ -66,6 +48,7 @@ export default function Upload(props) {
           me="36px"
           maxH={{ base: "60%", lg: "50%", "2xl": "100%" }}
           minH={{ base: "60%", lg: "50%", "2xl": "100%" }}
+          onDrop={handleFileUpload}
           content={
             <Box>
               <Icon as={MdUpload} w="80px" h="80px" color={brandColor} />
@@ -99,31 +82,7 @@ export default function Upload(props) {
           >
             Please upload a copy of your recent medical prescription. This will help us better understand your needs and provide tailored recommendations for your health.
           </Text>
-          <Flex w="100%">
-            <Button
-              me="100%"
-              mb="50px"
-              w="140px"
-              minW="140px"
-              mt={{ base: "20px", "2xl": "auto" }}
-              variant="brand"
-              fontWeight="500"
-              onClick={generateFakeReport}
-            >
-              Upload Now
-            </Button>
-          </Flex>
-
-          {reportGenerated && (
-            <Button
-              mt="10px"
-              variant="outline"
-              colorScheme="blue"
-              onClick={downloadReport}
-            >
-              Download Medical Report
-            </Button>
-          )}
+          {uploadMessage && <Text color="green.500">{uploadMessage}</Text>}
         </Flex>
       </Flex>
     </Card>

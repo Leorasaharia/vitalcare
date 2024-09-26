@@ -1,88 +1,151 @@
-// Chakra imports
-import { Box, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Flex,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  useColorModeValue
+} from "@chakra-ui/react";
+import { useMemo } from "react";
+import {
+  useGlobalFilter,
+  usePagination,
+  useSortBy,
+  useTable,
+} from "react-table";
+
 // Custom components
-import Card from "components/card/Card.js";
+import Card from "components/card/Card";
+import Menu from "components/menu/MainMenu";
 
-const Information = ({ boxShadow, title, value }) => (
-  <Box
-    boxShadow={boxShadow}
-    p="20px"
-    borderRadius="8px"
-    bg={useColorModeValue("white", "gray.700")}
-  >
-    <Text fontSize="md" fontWeight="bold" mb="10px">
-      {title}
-    </Text>
-    <Text fontSize="sm">{value}</Text>
-  </Box>
-);
-
-export default function GeneralInformation(props) {
-  const { ...rest } = props;
-  // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const textColorSecondary = "gray.400";
-  const cardShadow = useColorModeValue(
-    "0px 18px 40px rgba(112, 144, 176, 0.12)",
-    "unset"
+export default function CheckTable(props) {
+  const columnsData = useMemo(
+    () => [
+      {
+        Header: "TEST PARAMETER",
+        accessor: "testParameter",
+      },
+      {
+        Header: "RESULT",
+        accessor: "result",
+      },
+      {
+        Header: "REFERENCE RANGE",
+        accessor: "referenceRange",
+      },
+    ],
+    []
   );
 
+  const leoraPathologyData = useMemo(
+    () => [
+      { testParameter: "Glucose", result: "89 mg/dL", referenceRange: "70-100 mg/dL" },
+      { testParameter: "Hemoglobin", result: "13.5 g/dL", referenceRange: "12-16 g/dL" },
+      { testParameter: "WBC Count", result: "5.8 x10^3/uL", referenceRange: "4.5-11 x10^3/uL" },
+      { testParameter: "Platelets", result: "250 x10^3/uL", referenceRange: "150-450 x10^3/uL" },
+      { testParameter: "Cholesterol", result: "190 mg/dL", referenceRange: "Under 200 mg/dL" },
+      { testParameter: "Triglycerides", result: "120 mg/dL", referenceRange: "Under 150 mg/dL" },
+      { testParameter: "HDL Cholesterol", result: "55 mg/dL", referenceRange: "Over 40 mg/dL" },
+      { testParameter: "LDL Cholesterol", result: "110 mg/dL", referenceRange: "Under 130 mg/dL" },
+      { testParameter: "Creatinine", result: "0.9 mg/dL", referenceRange: "0.6-1.2 mg/dL" },
+      { testParameter: "AST (SGOT)", result: "25 U/L", referenceRange: "10-35 U/L" },
+      { testParameter: "ALT (SGPT)", result: "22 U/L", referenceRange: "7-56 U/L" },
+      { testParameter: "Calcium", result: "9.6 mg/dL", referenceRange: "8.6-10.2 mg/dL" },
+    ],
+    []
+  );
+
+  const tableInstance = useTable(
+    {
+      columns: columnsData,
+      data: leoraPathologyData,
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    prepareRow,
+    initialState,
+  } = tableInstance;
+  initialState.pageSize = 12; // Adjust the page size to the number of test parameters
+
+  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
   return (
-    <Card mb={{ base: "0px", "2xl": "20px" }} {...rest}>
-      <Text
-        color={textColorPrimary}
-        fontWeight="bold"
-        fontSize="2xl"
-        mt="10px"
-        mb="4px"
-      >
-        General Information
-      </Text>
-      <Text color={textColorSecondary} fontSize="md" me="26px" mb="40px">
-        General information about the patient including vital parameters, medical history, and pre-checks.
-      </Text>
-      <SimpleGrid columns="2" gap="20px">
-        <Information
-          boxShadow={cardShadow}
-          title="Heart Rate"
-          value="72 bpm"
-        />
-        <Information
-          boxShadow={cardShadow}
-          title="Blood Pressure"
-          value="120/80 mmHg"
-        />
-        <Information
-          boxShadow={cardShadow}
-          title="Temperature"
-          value="98.6°F"
-        />
-        <Information
-          boxShadow={cardShadow}
-          title="Respiratory Rate"
-          value="16 breaths/min"
-        />
-        <Information
-          boxShadow={cardShadow}
-          title="Blood Test"
-          value="Normal"
-        />
-        <Information
-          boxShadow={cardShadow}
-          title="ECG"
-          value="Normal"
-        />
-        <Information
-          boxShadow={cardShadow}
-          title="X-ray"
-          value="No issues detected"
-        />
-        <Information
-          boxShadow={cardShadow}
-          title="Allergies"
-          value="None"
-        />
-      </SimpleGrid>
+    <Card
+      direction="column"
+      w="100%" // Use a specific width if needed, e.g., "90%" or "1200px"
+      px="0px"
+      overflowX={{ sm: "scroll", lg: "hidden" }}
+    >
+      <Flex px="25px" justify="space-between" align="center">
+        <Text
+          color={textColor}
+          fontSize="22px"
+          fontWeight="700"
+          lineHeight="100%"
+        >
+          Leora Saharia's Pathology Test Results
+        </Text>
+        <Menu />
+      </Flex>
+      <Table {...getTableProps()} variant="simple" color="gray.500" mb="24px">
+        <Thead>
+          {headerGroups.map((headerGroup, index) => (
+            <Tr {...headerGroup.getHeaderGroupProps()} key={index}>
+              {headerGroup.headers.map((column, index) => (
+                <Th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  pe="10px"
+                  key={index}
+                  borderColor={borderColor}
+                >
+                  <Flex
+                    justify="space-between"
+                    align="center"
+                    fontSize={{ sm: "10px", lg: "12px" }}
+                    color="gray.400"
+                  >
+                    {column.render("Header")}
+                  </Flex>
+                </Th>
+              ))}
+            </Tr>
+          ))}
+        </Thead>
+        <Tbody {...getTableBodyProps()}>
+          {page.map((row, index) => {
+            prepareRow(row);
+            return (
+              <Tr {...row.getRowProps()} key={index}>
+                {row.cells.map((cell, index) => (
+                  <Td
+                    {...cell.getCellProps()}
+                    key={index}
+                    fontSize={{ sm: "14px" }}
+                    minW={{ sm: "150px", md: "200px", lg: "auto" }}
+                    borderColor="transparent"
+                  >
+                    <Text color={textColor} fontSize="sm" fontWeight="700">
+                      {cell.value}
+                    </Text>
+                  </Td>
+                ))}
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
     </Card>
   );
 }

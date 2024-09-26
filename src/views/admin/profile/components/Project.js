@@ -1,78 +1,159 @@
-// Chakra imports
 import {
-  Box,
   Flex,
-  Grid,
-  Icon,
-  Link,
+  Table,
+  Tbody,
+  Td,
   Text,
-  useColorModeValue,
+  Th,
+  Thead,
+  Tr,
+  useColorModeValue
 } from "@chakra-ui/react";
+import { useMemo } from "react";
+import {
+  useGlobalFilter,
+  usePagination,
+  useSortBy,
+  useTable,
+} from "react-table";
+
 // Custom components
-import Card from "components/card/Card.js";
-import { MdEdit } from "react-icons/md";
+import Card from "components/card/Card";
+import Menu from "components/menu/MainMenu";
 
-// PreChecks and Previous Records Component
-const PreChecksAndRecords = ({ title, date, link, description }) => {
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const textColorSecondary = "gray.400";
-  const brandColor = useColorModeValue("brand.500", "white");
-  const bg = useColorModeValue("white", "navy.700");
-
-  return (
-    <Card bg={bg} p="10px" mb="10px">
-      <Flex align="center">
-        <Box>
-          <Text color={textColorPrimary} fontWeight="500" fontSize="md" mb="2px">
-            {title}
-          </Text>
-          <Text fontWeight="500" color={textColorSecondary} fontSize="sm" mb="2px">
-            {description}
-          </Text>
-          <Text fontWeight="500" color={textColorSecondary} fontSize="sm">
-            Date: {date} •{" "}
-            <Link fontWeight="500" color={brandColor} href={link} fontSize="sm">
-              View details
-            </Link>
-          </Text>
-        </Box>
-        <Link href={link} variant="no-hover" ms="auto" p="0px !important">
-          <Icon as={MdEdit} color="secondaryGray.500" h="18px" w="18px" />
-        </Link>
-      </Flex>
-    </Card>
+export default function CheckTable(props) {
+  const columnsData = useMemo(
+    () => [
+      {
+        Header: "RECORD TYPE",
+        accessor: "recordType",
+      },
+      {
+        Header: "DETAILS",
+        accessor: "details",
+      },
+    ],
+    []
   );
-};
 
-export default function Profile() {
+  const leoraEHRData = useMemo(
+    () => [
+      {
+        recordType: "Identification Data",
+        details: "Leora Saharia, DOB: Jan 1, 1995, Female, Address: 123 Main St.",
+      },
+      {
+        recordType: "Medical History",
+        details: "Past conditions: None, Family History: Hypertension",
+      },
+      {
+        recordType: "Medications and Allergies",
+        details: "Allergic to Penicillin, No current medications",
+      },
+      {
+        recordType: "Vital Signs",
+        details: "Latest BP: 120/80, Recorded on 2023-08-10",
+      },
+      {
+        recordType: "Visit Records",
+        details: "Last visit: 2023-08-10 for annual check-up",
+      },
+      {
+        recordType: "Immunizations",
+        details: "Flu vaccine received on 2022-10-15",
+      },
+    ],
+    []
+  );
+
+  const tableInstance = useTable(
+    {
+      columns: columnsData,
+      data: leoraEHRData,
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    prepareRow,
+    initialState,
+  } = tableInstance;
+  initialState.pageSize = 6; // Set the page size to 6 as we have 6 types of records
+
+  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
   return (
-    <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-      <Grid
-        templateColumns={{
-          base: "1fr",
-          lg: "repeat(2, 1fr)",
-        }}
-        gap="10px"
-      >
-        <PreChecksAndRecords
-          title="Blood Test"
-          date="2024-07-24"
-          description="Routine blood test to check cholesterol levels."
-          link="#"
-        />
-        <PreChecksAndRecords
-          title="ECG"
-          date="2024-07-20"
-          description="Electrocardiogram to check heart activity."
-          link="#"
-        />
-        <PreChecksAndRecords
-          title="X-ray"
-          date="2024-07-18"
-          description="Chest X-ray to examine lungs and heart."
-          link="#"
-        />
-      </Grid>
-    </Box>
+    <Card
+      direction="column"
+      w="100%"
+      px="0px"
+      overflowX={{ sm: "scroll", lg: "hidden" }}
+    >
+      <Flex px="25px" justify="space-between" align="center">
+        <Text
+          color={textColor}
+          fontSize="22px"
+          fontWeight="700"
+          lineHeight="100%"
+        >
+          Leora Saharia's E-Records
+        </Text>
+        <Menu />
+      </Flex>
+      <Table {...getTableProps()} variant="simple" color="gray.500" mb="24px">
+        <Thead>
+          {headerGroups.map((headerGroup, index) => (
+            <Tr {...headerGroup.getHeaderGroupProps()} key={index}>
+              {headerGroup.headers.map((column, index) => (
+                <Th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  pe="10px"
+                  key={index}
+                  borderColor={borderColor}
+                >
+                  <Flex
+                    justify="space-between"
+                    align="center"
+                    fontSize={{ sm: "10px", lg: "12px" }}
+                    color="gray.400"
+                  >
+                    {column.render("Header")}
+                  </Flex>
+                </Th>
+              ))}
+            </Tr>
+          ))}
+        </Thead>
+        <Tbody {...getTableBodyProps()}>
+          {page.map((row, index) => {
+            prepareRow(row);
+            return (
+              <Tr {...row.getRowProps()} key={index}>
+                {row.cells.map((cell, index) => (
+                  <Td
+                    {...cell.getCellProps()}
+                    key={index}
+                    fontSize={{ sm: "14px" }}
+                    minW={{ sm: "150px", md: "200px", lg: "auto" }}
+                    borderColor="transparent"
+                  >
+                    <Text color={textColor} fontSize="sm" fontWeight="700">
+                      {cell.value}
+                    </Text>
+                  </Td>
+                ))}
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
+    </Card>
   );
 }

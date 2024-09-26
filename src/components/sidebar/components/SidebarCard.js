@@ -1,9 +1,9 @@
 import {
-    Button,
-    Flex,
-    Link,
-    Text,
-    useColorModeValue
+  Button,
+  Flex,
+  Link,
+  Text,
+  useColorModeValue
 } from "@chakra-ui/react";
 
 export default function SidebarDocs() {
@@ -16,35 +16,35 @@ export default function SidebarDocs() {
       direction='column'
       align='center'
       bg={bgColor}
-      borderRadius='20px' // Smaller border radius
+      borderRadius='20px' 
       position='relative'
-      width='240px' // Smaller width
-      padding='20px' // Added padding to control inner spacing
+      width='240px' 
+      padding='20px' 
       >
       <Flex
         border='4px solid'
         borderColor={borderColor}
         bg={bgColor}
         borderRadius='50%'
-        w='70px' // Smaller width
-        h='70px' // Smaller height
+        w='70px' 
+        h='70px'
         align='center'
         justify='center'
         mx='auto'
         position='absolute'
         left='50%'
-        top='-35px' // Adjusted position for smaller size
+        top='-35px' 
         transform='translate(-50%, 0%)'>
       </Flex>
       <Flex
         direction='column'
-        mb='8px' // Reduced margin-bottom
+        mb='8px'
         align='center'
         justify='center'
         px='10px'
-        pt='45px'> {/* Reduced padding-top */}
+        pt='45px'> 
         <Text
-          fontSize='md' // Reduced font size
+          fontSize='md' 
           color='white'
           fontWeight='bold'
           lineHeight='140%'
@@ -55,7 +55,7 @@ export default function SidebarDocs() {
           Upgrade Your Plan
         </Text>
         <Text
-          fontSize='12px' // Smaller font size
+          fontSize='12px' 
           color={"white"}
           fontWeight='500'
           px='8px'

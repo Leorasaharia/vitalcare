@@ -1,8 +1,7 @@
 // Chakra imports
+import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar, Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Banner(props) {
 	const { banner, avatar, name, job, posts, followers, following } = props;
@@ -40,26 +39,26 @@ export default function Banner(props) {
 			<Flex w='max-content' mx='auto' mt='26px'> 
 				<Flex mx='auto' me='60px' align='center' direction='column'>
 					<Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-						{posts || 0}
+						{posts || 19}
 					</Text>
 					<Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-						Posts
+						Age
 					</Text>
 				</Flex>
 				<Flex mx='auto' me='60px' align='center' direction='column'>
 					<Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-						{followers || 0}
+						{followers || 161}
 					</Text>
 					<Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-						Followers
+						Height
 					</Text>
 				</Flex>
 				<Flex mx='auto' align='center' direction='column'>
 					<Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-						{following || 0}
+						{following || 48}
 					</Text>
 					<Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-						Following
+						Weight
 					</Text>
 				</Flex>
 			</Flex>

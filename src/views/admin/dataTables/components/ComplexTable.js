@@ -1,8 +1,7 @@
 import {
   Flex,
-  Table,
-  Progress,
   Icon,
+  Table,
   Tbody,
   Td,
   Text,
@@ -11,7 +10,7 @@ import {
   Tr,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -24,12 +23,73 @@ import Card from "components/card/Card";
 import Menu from "components/menu/MainMenu";
 
 // Assets
-import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
-export default function ColumnsTable(props) {
-  const { columnsData, tableData } = props;
+import { MdCancel, MdCheckCircle } from "react-icons/md";
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+// Sample data for the PharmacyTable
+const columnsData = [
+  {
+    Header: "Drug Name",
+    accessor: "drugName",
+  },
+  {
+    Header: "Dosage",
+    accessor: "dosage",
+  },
+  {
+    Header: "Quantity",
+    accessor: "quantity",
+  },
+  {
+    Header: "Expiration Date",
+    accessor: "expirationDate",
+  },
+  {
+    Header: "Status",
+    accessor: "status",
+  },
+];
+
+const tableData = [
+  {
+    drugName: "Aspirin",
+    dosage: "500mg",
+    quantity: "120",
+    expirationDate: "2025-08-15",
+    status: "Available",
+  },
+  {
+    drugName: "Tylenol",
+    dosage: "325mg",
+    quantity: "80",
+    expirationDate: "2024-12-01",
+    status: "Available",
+  },
+  {
+    drugName: "Antibiotic X",
+    dosage: "250mg",
+    quantity: "50",
+    expirationDate: "2024-10-30",
+    status: "Out of Stock",
+  },
+  {
+    drugName: "Vitamin C",
+    dosage: "1000mg",
+    quantity: "200",
+    expirationDate: "2026-03-20",
+    status: "Available",
+  },
+  {
+    drugName: "Cough Syrup",
+    dosage: "200ml",
+    quantity: "30",
+    expirationDate: "2024-07-15",
+    status: "Out of Stock",
+  },
+];
+
+export default function PharmacyTable() {
+  const columns = useMemo(() => columnsData, []);
+  const data = useMemo(() => tableData, []);
 
   const tableInstance = useTable(
     {
@@ -53,6 +113,7 @@ export default function ColumnsTable(props) {
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+  
   return (
     <Card
       direction='column'
@@ -65,7 +126,7 @@ export default function ColumnsTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Complex Table
+          Pharmacy Table
         </Text>
         <Menu />
       </Flex>
@@ -98,13 +159,31 @@ export default function ColumnsTable(props) {
               <Tr {...row.getRowProps()} key={index}>
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "NAME") {
+                  if (cell.column.Header === "Drug Name") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "STATUS") {
+                  } else if (cell.column.Header === "Dosage") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "Quantity") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "Expiration Date") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "Status") {
                     data = (
                       <Flex align='center'>
                         <Icon
@@ -112,45 +191,23 @@ export default function ColumnsTable(props) {
                           h='24px'
                           me='5px'
                           color={
-                            cell.value === "Approved"
+                            cell.value === "Available"
                               ? "green.500"
-                              : cell.value === "Disable"
+                              : cell.value === "Out of Stock"
                               ? "red.500"
-                              : cell.value === "Error"
-                              ? "orange.500"
                               : null
                           }
                           as={
-                            cell.value === "Approved"
+                            cell.value === "Available"
                               ? MdCheckCircle
-                              : cell.value === "Disable"
+                              : cell.value === "Out of Stock"
                               ? MdCancel
-                              : cell.value === "Error"
-                              ? MdOutlineError
                               : null
                           }
                         />
                         <Text color={textColor} fontSize='sm' fontWeight='700'>
                           {cell.value}
                         </Text>
-                      </Flex>
-                    );
-                  } else if (cell.column.Header === "DATE") {
-                    data = (
-                      <Text color={textColor} fontSize='sm' fontWeight='700'>
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "PROGRESS") {
-                    data = (
-                      <Flex align='center'>
-                        <Progress
-                          variant='table'
-                          colorScheme='brandScheme'
-                          h='8px'
-                          w='108px'
-                          value={cell.value}
-                        />
                       </Flex>
                     );
                   }
